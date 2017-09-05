@@ -11,4 +11,6 @@ package br.edu.ifsc.navegacaoderobos;
  */
 public class BuscaDeCustoUniforme {
     
+    Nodo[] mapa = new Nodo[100];
+    
 }
