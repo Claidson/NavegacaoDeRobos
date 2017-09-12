@@ -13,13 +13,19 @@ public class Nodo {
     private Boolean estado;
     private Boolean saida;
     private Boolean chegada;
-    private Boolean visitado;
+    private Boolean visitadoA;
+    private Boolean visitadoB;
     private String caminho;
     private float peso;
+    private int i;
+    private int j;
 
-    public Nodo() {
+    public Nodo(int i, int j) {
+        this.i = i;
+        this.j = j;
         this.estado = false;
-        this.visitado = false;
+        this.visitadoA = false;
+        this.visitadoB = false;
         this.chegada = false;
         this.saida = false;
         this.caminho = "";
@@ -35,12 +41,12 @@ public class Nodo {
         this.estado = estado;
     }
 
-    public Boolean getVisitado() {
-        return visitado;
+    public Boolean getVisitadoA() {
+        return visitadoA;
     }
 
-    public void setVisitado(Boolean visitado) {
-        this.visitado = visitado;
+    public void setVisitadoA(Boolean visitadoA) {
+        this.visitadoA = visitadoA;
     }
 
     public String getCaminho() {
@@ -74,7 +80,29 @@ public class Nodo {
     public void setChegada(Boolean chegada) {
         this.chegada = chegada;
     }
-    
+
+    public int getI() {
+        return i;
+    }
+
+    public void setI(int i) {
+        this.i = i;
+    }
+
+    public int getJ() {
+        return j;
+    }
+
+    public void setJ(int j) {
+        this.j = j;
+    }
+        public Boolean getVisitadoB() {
+        return visitadoB;
+    }
+
+    public void setVisitadoB(Boolean visitadoB) {
+        this.visitadoB = visitadoB;
+    }
     
     
 }
