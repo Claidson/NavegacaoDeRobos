@@ -31,22 +31,21 @@ public class BuscaBidirecional {
                 System.out.println("Erro: Inicio ou chegada selecionado!");
                 return null;
             }
-        }
+        }/*
         while (!filaA.isEmpty() || !filaB.isEmpty()){
             Nodo nodoA = filaA.remove();
             int i = nodoA.getI()-1;
             int j = nodoA.getJ()-1;
             if (nodo[i][j]!=null)
                 if (!nodo[i][j].getVisitadoA())
-                    if (!nodo[i][j].getEstado())
+                    if (!nodo[i][j].getEstado())        
             
             
             
             
             
             
-            
-        }
+        }*/
         
 
         return nodo;
