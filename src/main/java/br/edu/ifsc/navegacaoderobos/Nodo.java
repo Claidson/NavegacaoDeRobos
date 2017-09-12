@@ -13,22 +13,6 @@ public class Nodo {
     private Boolean estado;
     private Boolean saida;
     private Boolean chegada;
-
-    public Boolean getSaida() {
-        return saida;
-    }
-
-    public void setSaida(Boolean saida) {
-        this.saida = saida;
-    }
-
-    public Boolean getChegada() {
-        return chegada;
-    }
-
-    public void setChegada(Boolean chegada) {
-        this.chegada = chegada;
-    }
     private Boolean visitado;
     private String caminho;
     private float peso;
@@ -75,6 +59,21 @@ public class Nodo {
         this.peso = peso;
     }
     
+    public Boolean getSaida() {
+        return saida;
+    }
+
+    public void setSaida(Boolean saida) {
+        this.saida = saida;
+    }
+
+    public Boolean getChegada() {
+        return chegada;
+    }
+
+    public void setChegada(Boolean chegada) {
+        this.chegada = chegada;
+    }
     
     
     
