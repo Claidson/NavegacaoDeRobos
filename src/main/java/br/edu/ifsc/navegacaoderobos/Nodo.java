@@ -19,6 +19,22 @@ public class Nodo {
     private float peso;
     private int i;
     private int j;
+    private String rotulo;
+    public int pai = -1;
+    
+        public Nodo(String rot) {
+        rotulo = rot;
+        visitadoA = false;
+
+    }
+
+    public void setPai(int pai) {
+        this.pai = pai;
+    }
+
+    public int getPai() {
+        return this.pai;
+    }
 
     public Nodo(int i, int j) {
         this.i = i;
