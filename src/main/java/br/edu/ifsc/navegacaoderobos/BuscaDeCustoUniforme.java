@@ -174,8 +174,8 @@ public class BuscaDeCustoUniforme {
             if (start != -1) {
                 String origem = nodoLista[start].rotulo;
                 for (Transicoes t : valores) {
-                    if ((t.getStart().equalsIgnoreCase(origem) && t.getEnd().equalsIgnoreCase(destino))
-                            || (t.getStart().equalsIgnoreCase(destino) && t.getEnd().equalsIgnoreCase(origem))) {
+                    if ((t.getInicio().equalsIgnoreCase(origem) && t.getFim().equalsIgnoreCase(destino))
+                            || (t.getInicio().equalsIgnoreCase(destino) && t.getFim().equalsIgnoreCase(origem))) {
                         value += t.getValue();
                         tempo += t.getTempo();
                     }
@@ -183,10 +183,10 @@ public class BuscaDeCustoUniforme {
             }
         }
         for (Transicoes t : valores) {
-            if ((t.getStart().equalsIgnoreCase(nodoLista[vertice].rotulo) && 
-                    t.getEnd().equalsIgnoreCase(nodoLista[chegada].rotulo))
-                    || (t.getStart().equalsIgnoreCase(nodoLista[chegada].rotulo) && 
-                    t.getEnd().equalsIgnoreCase(nodoLista[vertice].rotulo))) {
+            if ((t.getInicio().equalsIgnoreCase(nodoLista[vertice].rotulo) && 
+                    t.getFim().equalsIgnoreCase(nodoLista[chegada].rotulo))
+                    || (t.getInicio().equalsIgnoreCase(nodoLista[chegada].rotulo) && 
+                    t.getFim().equalsIgnoreCase(nodoLista[vertice].rotulo))) {
                 value += t.getValue();
                 tempo += t.getTempo();
             }
