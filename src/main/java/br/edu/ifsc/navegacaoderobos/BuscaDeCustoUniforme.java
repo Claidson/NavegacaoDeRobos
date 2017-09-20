@@ -15,6 +15,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,24 +25,24 @@ import javax.swing.JOptionPane;
 public class BuscaDeCustoUniforme {
     
     //Nodo[] mapa = new Nodo[100];
-    private final int MAX_VERTS = 20;
-    private Nodo vertexList[];
+    private final int MAX_NODO = 20;
+    private Nodo nodoLista[];
     private double adjMat[][];
-    private int nVerts;
+    private int Nnodos;
     private ArrayList<Transicoes> valores;
     public String caminhoFinal = "";
     private List<Point> pontos = new ArrayList<>(20);
     public List<Point> pont = new ArrayList<>(20);
 
 // ------------------------------------------------------------
-    public BuscaUniforme() {
-        this.valores = new ArrayList<Transitions>();
-        vertexList = new Nodo[MAX_VERTS];
+    public BuscaDeCustoUniforme() {
+        this.valores = new ArrayList<Transicoes>();
+        nodoLista = new Nodo[MAX_NODO];
 
-        adjMat = new double[MAX_VERTS][MAX_VERTS];
-        nVerts = 0;
-        for (int y = 0; y < MAX_VERTS; y++) {
-            for (int x = 0; x < MAX_VERTS; x++) {
+        adjMat = new double[MAX_NODO][MAX_NODO];
+        Nnodos = 0;
+        for (int y = 0; y < MAX_NODO; y++) {
+            for (int x = 0; x < MAX_NODO; x++) {
                 adjMat[x][y] = 0;
             }
         }
@@ -52,8 +53,8 @@ public class BuscaDeCustoUniforme {
     }
 // ------------------------------------------------------------
 
-    public void addVertex(String lab) {
-        vertexList[nVerts++] = new Nodo(lab);
+    public void addNodos(String rot) {
+        nodoLista[Nnodos++] = new Nodo(rot);
     }
 // ------------------------------------------------------------
 
@@ -87,11 +88,11 @@ public class BuscaDeCustoUniforme {
                 double v = fila.get(0).getValor();
                 fila.remove(0);
                 
-                vertexList[v1].wasVisited = true;
-                vertexList[end].wasVisited = false;
+                nodoLista[v1].foiVisitado = true;
+                nodoLista[end].foiVisitado = false;
                 
-                while ((v2 = getAdjUnvisitedVertex(v1)) != -1) {
-                    vertexList[v2].wasVisited = true;
+                while ((v2 = getNodoNaoVisitado(v1)) != -1) {
+                    nodoLista[v2].foiVisitado = true;
                     if (v2 == end) {
                     	if(fim == -1) {
                     		fim = v1;
@@ -100,14 +101,14 @@ public class BuscaDeCustoUniforme {
                     		double atual = v + adjMat[v1][v2];
                     		if(atual <= value) {
                     			fim = v1;
-                    			vertexList[v2].dad = v1;
+                    			nodoLista[v2].pai = v1;
                     		}else {
                     			continua = false;
                     		}
                     	}
                     	  
                     } else {
-                        vertexList[v2].dad = v1;
+                        nodoLista[v2].pai = v1;
                         double valor = v + adjMat[v1][v2];
                         fila.add(new caminho(v2, valor));
                     }
@@ -123,18 +124,18 @@ public class BuscaDeCustoUniforme {
         }
         
 
-        for (int j = 0; j < nVerts; j++) {
-            vertexList[j].wasVisited = false;
-            vertexList[j].setDad(-1);
+        for (int j = 0; j < Nnodos; j++) {
+            nodoLista[j].foiVisitado = false;
+            nodoLista[j].setPai(-1);
         }
     }
 // ------------------------------------------------------------
 
 // ------------------------------------------------------------- 
-    public int getAdjUnvisitedVertex(int v) {
+    public int getNodoNaoVisitado(int v) {
 
-        for (int j = 0; j < nVerts; j++) {
-            if (adjMat[v][j] != 0 && vertexList[j].wasVisited == false) {
+        for (int j = 0; j < Nnodos; j++) {
+            if (adjMat[v][j] != 0 && nodoLista[j].foiVisitado == false) {
                 return j;
             }
         }
@@ -147,31 +148,31 @@ public class BuscaDeCustoUniforme {
         int i = 0;
         Point[] p = new Point[20];
         ArrayList<Nodo> List = new ArrayList<>();
-        List.add(vertexList[vertice]);
+        List.add(nodoLista[vertice]);
 
-        int valor = vertexList[vertice].dad;
+        int valor = nodoLista[vertice].pai;
         p[i++] = pontos.get(chegada);
         p[i++] = pontos.get(vertice);
         
         while (valor != -1) {
-            List.add(vertexList[valor]);
+            List.add(nodoLista[valor]);
             p[i++] = pontos.get(valor);
-            valor = vertexList[valor].dad;
+            valor = nodoLista[valor].pai;
         }
 
         for (int j = List.size() - 1; j >= 0; j--) {
-            caminhoFinal = caminhoFinal + "" + List.get(j).label + " ->";
+            caminhoFinal = caminhoFinal + "" + List.get(j).rotulo + " ->";
         }
 
-        caminhoFinal = caminhoFinal + "" + vertexList[chegada].label + "\n";
+        caminhoFinal = caminhoFinal + "" + nodoLista[chegada].rotulo + "\n";
 
         double value = 0;
         double tempo = 0;
         for (int j = List.size() - 1; j >= 0; j--) {
-            String destino = vertexList[j].label;
-            int start = vertexList[j].dad;
+            String destino = nodoLista[j].rotulo;
+            int start = nodoLista[j].pai;
             if (start != -1) {
-                String origem = vertexList[start].label;
+                String origem = nodoLista[start].rotulo;
                 for (Transicoes t : valores) {
                     if ((t.getStart().equalsIgnoreCase(origem) && t.getEnd().equalsIgnoreCase(destino))
                             || (t.getStart().equalsIgnoreCase(destino) && t.getEnd().equalsIgnoreCase(origem))) {
@@ -182,10 +183,10 @@ public class BuscaDeCustoUniforme {
             }
         }
         for (Transicoes t : valores) {
-            if ((t.getStart().equalsIgnoreCase(vertexList[vertice].label) && 
-                    t.getEnd().equalsIgnoreCase(vertexList[chegada].label))
-                    || (t.getStart().equalsIgnoreCase(vertexList[chegada].label) && 
-                    t.getEnd().equalsIgnoreCase(vertexList[vertice].label))) {
+            if ((t.getStart().equalsIgnoreCase(nodoLista[vertice].rotulo) && 
+                    t.getEnd().equalsIgnoreCase(nodoLista[chegada].rotulo))
+                    || (t.getStart().equalsIgnoreCase(nodoLista[chegada].rotulo) && 
+                    t.getEnd().equalsIgnoreCase(nodoLista[vertice].rotulo))) {
                 value += t.getValue();
                 tempo += t.getTempo();
             }

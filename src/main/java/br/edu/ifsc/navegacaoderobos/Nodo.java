@@ -19,8 +19,9 @@ public class Nodo {
     private float peso;
     private int i;
     private int j;
-    private String rotulo;
+    public String rotulo;
     public int pai = -1;
+    public Boolean foiVisitado;
     
         public Nodo(String rot) {
         rotulo = rot;
