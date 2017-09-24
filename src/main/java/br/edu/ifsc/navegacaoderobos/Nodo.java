@@ -15,6 +15,15 @@ public class Nodo {
     private Boolean chegada;
     private Boolean visitadoA;
     private Boolean visitadoB;
+    private Boolean resultado;
+
+    public Boolean getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(Boolean resultado) {
+        this.resultado = resultado;
+    }
     private String caminho;
     private float peso;
     private int i;
@@ -47,6 +56,7 @@ public class Nodo {
         this.saida = false;
         this.caminho = "";
         this.peso = 0;
+        this.resultado = false;
     }
 
     
