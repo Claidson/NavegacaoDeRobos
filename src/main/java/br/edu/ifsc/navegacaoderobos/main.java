@@ -21,6 +21,11 @@ public class main {
     }
         nodo[10][10].setChegada(Boolean.TRUE);
         nodo[30][40].setSaida(Boolean.TRUE);
+        for (i = 1; i < 49; i++) {            
+           
+               nodo[i][30].setEstado(Boolean.TRUE);
+            }
+        
         
         BuscaBidirecional busca = new BuscaBidirecional();
         String r = busca.buscar(nodo);
