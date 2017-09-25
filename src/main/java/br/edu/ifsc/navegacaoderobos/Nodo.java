@@ -57,6 +57,10 @@ public class Nodo {
         this.caminho = "";
         this.peso = 0;
         this.resultado = false;
+        
+       // this.valor = valor;
+	//this.custo = custo;
+        
     }
 
     
@@ -131,5 +135,57 @@ public class Nodo {
         this.visitadoB = visitadoB;
     }
     
+    
+    private int valor;// Busca uniforme
+	
+	private int custo;
+	
+	private Nodo noPai;	
+	private Nodo noEsquerda;
+	private Nodo noDireita;
+	
+	public Nodo(int valor) {
+		this.valor = valor;
+		this.custo = 0;
+	}
+	
+	
+	public int getValor() {
+		return valor;
+	}
+
+	public Nodo getNoEsquerda() {
+		return noEsquerda;
+	}
+
+	public void setNoEsquerda(Nodo noEsquerda) {
+		this.noEsquerda = noEsquerda;
+		this.noEsquerda.setNoPai(this);
+	}
+
+	public Nodo getNoDireita() {
+		return noDireita;
+	}
+
+	public void setNoDireita(Nodo noDireita) {
+		this.noDireita = noDireita;
+		this.noDireita.setNoPai(this);
+	}
+
+	public Nodo getNoPai() {
+		return noPai;
+	}
+
+	public void setNoPai(Nodo noPai) {
+		this.noPai = noPai;
+	}
+
+	public int getCusto() {
+		return custo;
+	}
+
+	public void setCusto(int custo) {
+		this.custo = custo;
+	}
     
 }
