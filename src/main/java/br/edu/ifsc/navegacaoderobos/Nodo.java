@@ -25,7 +25,7 @@ public class Nodo {
         this.resultado = resultado;
     }
     private String caminho;
-    private float peso;
+    private double peso;
     private int i;
     private int j;
     public String rotulo;
@@ -88,11 +88,11 @@ public class Nodo {
         this.caminho = caminho;
     }
 
-    public float getPeso() {
+    public double getPeso() {
         return peso;
     }
 
-    public void setPeso(float peso) {
+    public void setPeso(double peso) {
         this.peso = peso;
     }
     
