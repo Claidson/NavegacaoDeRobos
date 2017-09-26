@@ -38,14 +38,14 @@ import java.util.Queue;
  *
  * @author Claidson
  */
-public class BuscaDeCustoUniforme {
+public class BuscaDeCustoUniformeArvore {
 
     private Queue<Nodo> filaNos;
     private int valorBusca;
     private String textoResposta;
 
 
-    public BuscaDeCustoUniforme(int valorBusca) {
+    public BuscaDeCustoUniformeArvore(int valorBusca) {
         this.filaNos = new LinkedList<Nodo>();
         this.setValorBusca(valorBusca);
     }

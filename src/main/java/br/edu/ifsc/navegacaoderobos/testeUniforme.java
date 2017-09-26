@@ -33,7 +33,7 @@ public class testeUniforme {
 	
 		
 	
-		BuscaDeCustoUniforme bcu = new BuscaDeCustoUniforme(6);
+		BuscaDeCustoUniformeArvore bcu = new BuscaDeCustoUniformeArvore(6);
 		bcu.buscarResultado(no0);
 		bcu.exibirTextoResultado();
     }

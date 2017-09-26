@@ -262,7 +262,18 @@ public class TelaInicial extends javax.swing.JFrame {
             tela.setVisible(true);
 
             reset();
-        } else {
+        } else if (jComboBox1.getSelectedIndex() == 2) {
+            BuscaUniforme busca = new BuscaUniforme();
+            String r = busca.buscar(nodo);
+            String[] res = r.split(";");
+            for (int f = 0; f < res.length; f = f + 2) {
+                nodo[Integer.parseInt(res[f])][Integer.parseInt(res[f + 1])].setResultado(Boolean.TRUE);
+            }
+            Tela tela = new Tela(nodo);
+            tela.setVisible(true);
+
+            reset();
+        }else {
 
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
