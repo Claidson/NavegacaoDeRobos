@@ -22,12 +22,12 @@ public class BuscaBidirecional {
         Queue<Nodo> filaB = new LinkedList<Nodo>();
         for (int i = 1; i < 51; i++) {
             for (int j = 1; j < 51; j++) {
-                if (nodo[i][j].getChegada()) {
+                if (nodo[i][j].getSaida()) {
                     nodo[i][j].setVisitadoA(Boolean.TRUE);
                     nodo[i][j].setCaminho(i + ";" + j);
                     filaA.add(nodo[i][j]);
                 }
-                if (nodo[i][j].getSaida()) {
+                if (nodo[i][j].getChegada()) {
                     nodo[i][j].setVisitadoB(Boolean.TRUE);
                     nodo[i][j].setCaminho(";" + i + ";" + j);
                     filaB.add(nodo[i][j]);

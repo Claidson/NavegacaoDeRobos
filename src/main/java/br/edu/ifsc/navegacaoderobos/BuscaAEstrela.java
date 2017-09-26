@@ -46,7 +46,7 @@ public class BuscaAEstrela {
                     remove = teste-1;
                 }
             }
-
+            nodoAtual.setVisitadoB(Boolean.TRUE);
             lista.remove(remove);
             String caminho = nodoAtual.getCaminho();
             int i = nodoAtual.getI() + 1;

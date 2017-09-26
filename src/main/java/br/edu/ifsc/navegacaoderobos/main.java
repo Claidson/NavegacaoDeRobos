@@ -14,11 +14,11 @@ public class main {
         int i;
         int j;
         Nodo[][] nodo = new Nodo[55][55];
-        for (i = 1; i < 51; i++) {            
+        for (i = 1; i < 51; i++) {
             for (j = 1; j < 51; j++) {
-                nodo[i][j] = new Nodo(i,j);
+                nodo[i][j] = new Nodo(i, j);
             }
-    }
+        }
 
         nodo[10][10].setSaida(Boolean.TRUE);
        nodo[10][40].setChegada(Boolean.TRUE);

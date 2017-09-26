@@ -33,11 +33,13 @@ public class Tela extends JFrame {
                 }else if (nodo[i][j].getChegada()){
                     botao.setBackground(Color.blue);
                 }else if (nodo[i][j].getSaida()){
-                    botao.setBackground(Color.PINK);
+                    botao.setBackground(Color.GREEN);
                 }else if (nodo[i][j].getResultado()){
                     botao.setBackground(Color.RED);
-                }else if (nodo[i][j].getVisitadoA() || nodo[i][j].getVisitadoB())
+                }else if (nodo[i][j].getVisitadoB())
                     botao.setBackground(Color.yellow);
+                else if ( nodo[i][j].getVisitadoA())
+                    botao.setBackground(Color.ORANGE);
                 
             pGrid.add(botao);       
             }
@@ -46,7 +48,7 @@ public class Tela extends JFrame {
 // painel do JFrame
         this.setLayout(new BorderLayout());
         this.getContentPane().add(pGrid, BorderLayout.CENTER);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setTitle("Cadastro");
         this.setSize(1080, 800);
         this.setResizable(true);
