@@ -10,7 +10,7 @@ import java.util.Queue;
 
 /**
  *
- * @author aluno
+ * @author Claidson
  */
 public class BuscaUniforme {
     
