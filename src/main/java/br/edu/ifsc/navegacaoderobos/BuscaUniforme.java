@@ -72,6 +72,10 @@ public class BuscaUniforme {
                 if (Verifica(nodo, linha, coluna, caminho, filaNodo)) {
                     return caminho + nodo[linha][coluna].getCaminho();
                 }
+                
+                //diagonais
+                
+                
                    linha++;
                  /*[ ][ ][ ]
                    [ ][x][ ]
