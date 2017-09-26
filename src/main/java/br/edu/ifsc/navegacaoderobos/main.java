@@ -19,15 +19,17 @@ public class main {
                 nodo[i][j] = new Nodo(i,j);
             }
     }
-        nodo[10][10].setChegada(Boolean.TRUE);
-        nodo[30][40].setSaida(Boolean.TRUE);
-        for (i = 1; i < 49; i++) {            
+
+        nodo[10][10].setSaida(Boolean.TRUE);
+       nodo[10][40].setChegada(Boolean.TRUE);
+       /*for (i = 1; i < 49; i++) {            
            
-               nodo[i][30].setEstado(Boolean.TRUE);
-            }
+        nodo[i][30].setEstado(Boolean.TRUE);
+         }*/
         
         
-        BuscaBidirecional busca = new BuscaBidirecional();
+       // BuscaBidirecional busca = new BuscaBidirecional();
+        BuscaAEstrela busca = new BuscaAEstrela();
         String r = busca.buscar(nodo);
         String[] res = r.split(";");
         for (int f = 0;f<res.length;f=f+2){

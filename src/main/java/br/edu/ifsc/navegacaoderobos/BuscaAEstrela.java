@@ -24,12 +24,12 @@ public class BuscaAEstrela {
         ArrayList<Nodo> lista = new ArrayList();
         for (int i = 1; i < 51; i++) {
             for (int j = 1; j < 51; j++) {
-                if (nodo[i][j].getChegada()) {
+                if (nodo[i][j].getSaida()) {
                     nodo[i][j].setVisitadoB(Boolean.TRUE);
                     nodo[i][j].setCaminho(i + ";" + j);
                     lista.add(nodo[i][j]);
                 }
-                if (nodo[i][j].getSaida()) {
+                if (nodo[i][j].getChegada()) {
                     x = i;
                     y = j;
                 }
@@ -41,9 +41,9 @@ public class BuscaAEstrela {
             int remove = 0;
             for (Nodo no : lista) {
                 teste++;
-                if ((no.getCusto() + previsaoPeso(no)) < (nodoAtual.getPeso() + previsaoPeso(nodoAtual))) {
+                if ((no.getPeso() + previsaoPeso(no)) < (nodoAtual.getPeso() + previsaoPeso(nodoAtual))) {
                     nodoAtual = no;
-                    remove = teste;
+                    remove = teste-1;
                 }
             }
 
@@ -60,7 +60,9 @@ public class BuscaAEstrela {
                             nodo[i][j].setCaminho(caminho + ";" + i + ";" + j);
                             lista.add(nodo[i][j]);
                         } else {
-                            return caminho + nodo[i][j].getCaminho();
+                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
+                            System.out.println(nodo[i][j].getPeso());
+                            return caminho + ";" + i + ";" + j;
                         }
                     }
                 } else {
@@ -82,7 +84,9 @@ public class BuscaAEstrela {
                             nodo[i][j].setCaminho(caminho + ";" + i + ";" + j);
                             lista.add(nodo[i][j]);
                         } else {
-                            return caminho + nodo[i][j].getCaminho();
+                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
+                            System.out.println(nodo[i][j].getPeso());
+                            return caminho + ";" + i + ";" + j;
                         }
                     }
                 } else {
@@ -104,7 +108,9 @@ public class BuscaAEstrela {
                             nodo[i][j].setCaminho(caminho + ";" + i + ";" + j);
                             lista.add(nodo[i][j]);
                         } else {
-                            return caminho + nodo[i][j].getCaminho();
+                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
+                            System.out.println(nodo[i][j].getPeso());
+                            return caminho + ";" + i + ";" + j;
                         }
                     }
                 } else {
@@ -126,12 +132,37 @@ public class BuscaAEstrela {
                             nodo[i][j].setCaminho(caminho + ";" + i + ";" + j);
                             lista.add(nodo[i][j]);
                         } else {
-                            return caminho + nodo[i][j].getCaminho();
+                                                        nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
+                            System.out.println(nodo[i][j].getPeso());
+                            return caminho + ";" + i + ";" + j;
                         }
                     }
                 } else {
                     if ((nodo[i][j].getPeso()) > (nodoAtual.getPeso() + 1)) {
                         nodo[i][j].setPeso(nodoAtual.getPeso() + 1);
+                        nodo[i][j].setCaminho(caminho + ";" + i + ";" + j);
+                    }
+
+                }
+            }
+            i++;
+            if (nodo[i][j] != null) {
+                if (!nodo[i][j].getVisitadoA()) {
+                    if (!nodo[i][j].getEstado()) {
+                        if (!nodo[i][j].getChegada()) {
+                            nodo[i][j].setVisitadoA(Boolean.TRUE);
+                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1.4);
+                            nodo[i][j].setCaminho(caminho + ";" + i + ";" + j);
+                            lista.add(nodo[i][j]);
+                        } else {
+                                                        nodo[i][j].setPeso(nodoAtual.getPeso() + 1.4);
+                            System.out.println(nodo[i][j].getPeso());
+                            return caminho + ";" + i + ";" + j;
+                        }
+                    }
+                } else {
+                    if ((nodo[i][j].getPeso()) > (nodoAtual.getPeso() + 1.4)) {
+                        nodo[i][j].setPeso(nodoAtual.getPeso() + 1.4);
                         nodo[i][j].setCaminho(caminho + ";" + i + ";" + j);
                     }
 
@@ -147,7 +178,9 @@ public class BuscaAEstrela {
                             nodo[i][j].setCaminho(caminho + ";" + i + ";" + j);
                             lista.add(nodo[i][j]);
                         } else {
-                            return caminho + nodo[i][j].getCaminho();
+                                                        nodo[i][j].setPeso(nodoAtual.getPeso() + 1.4);
+                            System.out.println(nodo[i][j].getPeso());
+                            return caminho + ";" + i + ";" + j;
                         }
                     }
                 } else {
@@ -157,56 +190,70 @@ public class BuscaAEstrela {
                     }
 
                 }
-                i = i - 2;
-                if (nodo[i][j] != null) {
-                    if (!nodo[i][j].getVisitadoA()) {
-                        if (!nodo[i][j].getEstado()) {
-                            if (!nodo[i][j].getChegada()) {
-                                nodo[i][j].setVisitadoA(Boolean.TRUE);
-                                nodo[i][j].setPeso(nodoAtual.getPeso() + 1.4);
-                                nodo[i][j].setCaminho(caminho + ";" + i + ";" + j);
-                                lista.add(nodo[i][j]);
-                            } else {
-                                return caminho + nodo[i][j].getCaminho();
-                            }
-                        }
-                    } else {
-                        if ((nodo[i][j].getPeso()) > (nodoAtual.getPeso() + 1.4)) {
+            }
+            i = i - 2;
+            if (nodo[i][j] != null) {
+                if (!nodo[i][j].getVisitadoA()) {
+                    if (!nodo[i][j].getEstado()) {
+                        if (!nodo[i][j].getChegada()) {
+                            nodo[i][j].setVisitadoA(Boolean.TRUE);
                             nodo[i][j].setPeso(nodoAtual.getPeso() + 1.4);
                             nodo[i][j].setCaminho(caminho + ";" + i + ";" + j);
-                        }
-
-                    }
-                    j = j - 2;
-                    if (nodo[i][j] != null) {
-                        if (!nodo[i][j].getVisitadoA()) {
-                            if (!nodo[i][j].getEstado()) {
-                                if (!nodo[i][j].getChegada()) {
-                                    nodo[i][j].setVisitadoA(Boolean.TRUE);
-                                    nodo[i][j].setPeso(nodoAtual.getPeso() + 1.4);
-                                    nodo[i][j].setCaminho(caminho + ";" + i + ";" + j);
-                                    lista.add(nodo[i][j]);
-                                } else {
-                                    return caminho + nodo[i][j].getCaminho();
-                                }
-                            }
+                            lista.add(nodo[i][j]);
                         } else {
-                            if ((nodo[i][j].getPeso()) > (nodoAtual.getPeso() + 1.4)) {
-                                nodo[i][j].setPeso(nodoAtual.getPeso() + 1.4);
-                                nodo[i][j].setCaminho(caminho + ";" + i + ";" + j);
-                            }
-
+                                                        nodo[i][j].setPeso(nodoAtual.getPeso() + 1.4);
+                            System.out.println(nodo[i][j].getPeso());
+                            return caminho + ";" + i + ";" + j;
                         }
+                    }
+                } else {
+                    if ((nodo[i][j].getPeso()) > (nodoAtual.getPeso() + 1.4)) {
+                        nodo[i][j].setPeso(nodoAtual.getPeso() + 1.4);
+                        nodo[i][j].setCaminho(caminho + ";" + i + ";" + j);
                     }
 
                 }
             }
+            j = j - 2;
+            if (nodo[i][j] != null) {
+                if (!nodo[i][j].getVisitadoA()) {
+                    if (!nodo[i][j].getEstado()) {
+                        if (!nodo[i][j].getChegada()) {
+                            nodo[i][j].setVisitadoA(Boolean.TRUE);
+                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1.4);
+                            nodo[i][j].setCaminho(caminho + ";" + i + ";" + j);
+                            lista.add(nodo[i][j]);
+                        } else {
+                            nodo[i][j].setPeso(nodoAtual.getPeso() + 1.4);
+                            System.out.println(nodo[i][j].getPeso());
+                            return caminho + ";" + i + ";" + j;
+                        }
+                    }
+                } else {
+                    if ((nodo[i][j].getPeso()) > (nodoAtual.getPeso() + 1.4)) {
+                        nodo[i][j].setPeso(nodoAtual.getPeso() + 1.4);
+                        nodo[i][j].setCaminho(caminho + ";" + i + ";" + j);
+                    }
 
+                }
+            }
         }
-        return new String();
-    }
+
+    return new String();
+}
+
+
+
+    
 
     public double previsaoPeso(Nodo nodo) {
-        return 1;
+        double a = Math.abs(nodo.getI() - x);
+        double b = Math.abs(nodo.getJ() - y);
+        if (a>b){
+            return ((b*1.4) + (a-b));
+        }else{
+            return ((a*1.4) + (b-a));
+        }            
+       
     }
 }

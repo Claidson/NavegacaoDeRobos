@@ -18,8 +18,6 @@ public class BuscaBidirecional {
     }
 
     public String buscar(Nodo nodo[][]) {
-        int a[] = null;
-        int b[] = null;
         Queue<Nodo> filaA = new LinkedList<Nodo>();
         Queue<Nodo> filaB = new LinkedList<Nodo>();
         for (int i = 1; i < 51; i++) {
@@ -35,10 +33,6 @@ public class BuscaBidirecional {
                     filaB.add(nodo[i][j]);
                 }
             }
-            //if ((a == null) || (b == null)) {
-            //  System.out.println("Erro: Inicio ou chegada selecionado!");
-            //return null;
-            // }
         }
         while (!filaA.isEmpty() || !filaB.isEmpty()) {
             int i;
