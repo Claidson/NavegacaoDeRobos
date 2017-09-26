@@ -30,18 +30,19 @@ public class Tela extends JFrame {
                 botao = new JButton();
                 if (nodo[i][j].getEstado()) {
                     botao.setBackground(Color.BLACK);
-                }else if (nodo[i][j].getChegada()){
+                } else if (nodo[i][j].getChegada()) {
                     botao.setBackground(Color.blue);
-                }else if (nodo[i][j].getSaida()){
+                } else if (nodo[i][j].getSaida()) {
                     botao.setBackground(Color.GREEN);
-                }else if (nodo[i][j].getResultado()){
+                } else if (nodo[i][j].getResultado()) {
                     botao.setBackground(Color.RED);
-                }else if (nodo[i][j].getVisitadoB())
+                } else if (nodo[i][j].getVisitadoB()) {
                     botao.setBackground(Color.yellow);
-                else if ( nodo[i][j].getVisitadoA())
+                } else if (nodo[i][j].getVisitadoA()) {
                     botao.setBackground(Color.ORANGE);
-                
-            pGrid.add(botao);       
+                }
+
+                pGrid.add(botao);
             }
         }
 

@@ -5,6 +5,10 @@
  */
 package br.edu.ifsc.navegacaoderobos;
 
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Fernando
@@ -242,7 +246,37 @@ public class TelaInicial extends javax.swing.JFrame {
 
         if (jComboBox1.getSelectedIndex() == 0) {
             BuscaBidirecional busca = new BuscaBidirecional();
+
+            long tempoInicial = System.currentTimeMillis();
+
             String r = busca.buscar(nodo);
+            tempoInicial = (System.currentTimeMillis() - tempoInicial);
+            int visitado = 0;
+            //int explorado = 0;
+            for (i = 1; i < 51; i++) {
+                for (j = 1; j < 51; j++) {
+
+                    if (nodo[i][j].getEstado()) {
+
+                    } else if (nodo[i][j].getChegada()) {
+                        visitado++;
+                    } else if (nodo[i][j].getSaida()) {
+                        visitado++;
+                    } else if (nodo[i][j].getResultado()) {
+                        visitado++;
+                    } else if (nodo[i][j].getVisitadoA()) {
+                        visitado++;
+                    } else if (nodo[i][j].getVisitadoB()) {
+                        visitado++;
+
+                    }
+
+                }
+            }
+
+            JOptionPane.showMessageDialog(null, "O tempo foi " + tempoInicial + " Milisegundos\n"
+                    + "Nos visitados: " + visitado);
+
             String[] res = r.split(";");
             for (int f = 0; f < res.length; f = f + 2) {
                 nodo[Integer.parseInt(res[f])][Integer.parseInt(res[f + 1])].setResultado(Boolean.TRUE);
@@ -253,7 +287,39 @@ public class TelaInicial extends javax.swing.JFrame {
 
         } else if (jComboBox1.getSelectedIndex() == 1) {
             BuscaAEstrela busca = new BuscaAEstrela();
+
+            long tempoInicial = System.currentTimeMillis();
             String r = busca.buscar(nodo);
+            tempoInicial = (System.currentTimeMillis() - tempoInicial);
+            int visitado = 0;
+            int explorado = 0;
+            for (i = 1; i < 51; i++) {
+                for (j = 1; j < 51; j++) {
+
+                    if (nodo[i][j].getEstado()) {
+
+                    } else if (nodo[i][j].getChegada()) {
+
+                    } else if (nodo[i][j].getSaida()) {
+                        visitado++;
+                        explorado++;
+                    } else if (nodo[i][j].getResultado()) {
+                        visitado++;
+                        explorado++;
+                    } else if (nodo[i][j].getVisitadoB()) {
+                        visitado++;
+                        explorado++;
+                    } else if (nodo[i][j].getVisitadoA()) {
+                        visitado++;
+                    }
+
+                }
+            }
+
+            JOptionPane.showMessageDialog(null, "O tempo foi " + tempoInicial + " Milisegundos\n"
+                    + "Nos explorados: " + explorado + "\n"
+                    + "Nos visitados: " + visitado);
+
             String[] res = r.split(";");
             for (int f = 0; f < res.length; f = f + 2) {
                 nodo[Integer.parseInt(res[f])][Integer.parseInt(res[f + 1])].setResultado(Boolean.TRUE);
@@ -264,7 +330,37 @@ public class TelaInicial extends javax.swing.JFrame {
             reset();
         } else if (jComboBox1.getSelectedIndex() == 2) {
             BuscaUniforme busca = new BuscaUniforme();
+
+            long tempoInicial = System.currentTimeMillis();
+
             String r = busca.buscar(nodo);
+            tempoInicial = (System.currentTimeMillis() - tempoInicial);
+            int visitado = 0;
+            //int explorado = 0;
+            for (i = 1; i < 51; i++) {
+                for (j = 1; j < 51; j++) {
+
+                    if (nodo[i][j].getEstado()) {
+
+                    } else if (nodo[i][j].getChegada()) {
+                        visitado++;
+                    } else if (nodo[i][j].getSaida()) {
+                        visitado++;
+                    } else if (nodo[i][j].getResultado()) {
+                        visitado++;
+                    } else if (nodo[i][j].getVisitadoA()) {
+                        visitado++;
+                    } else if (nodo[i][j].getVisitadoB()) {
+                        visitado++;
+
+                    }
+
+                }
+            }
+
+            JOptionPane.showMessageDialog(null, "O tempo foi " + tempoInicial + " Milisegundos\n"
+                    + "Nos visitados: " + visitado);
+
             String[] res = r.split(";");
             for (int f = 0; f < res.length; f = f + 2) {
                 nodo[Integer.parseInt(res[f])][Integer.parseInt(res[f + 1])].setResultado(Boolean.TRUE);
@@ -273,7 +369,7 @@ public class TelaInicial extends javax.swing.JFrame {
             tela.setVisible(true);
 
             reset();
-        }else {
+        } else {
 
         }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
@@ -328,7 +424,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jTextFieldInicialY.setText("8");
         jTextFieldFinalX.setText("21");
         jTextFieldFinalY.setText("21");
-        for (int g = 17;g <= 22; g++) {
+        for (int g = 17; g <= 22; g++) {
             nodo[g][23].setEstado(true);
         }
         for (int g = 33; g <= 38; g++) {
@@ -339,7 +435,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 nodo[g][h].setEstado(true);
             }
         }
-        for (int g = 24;g <= 26; g++) {
+        for (int g = 24; g <= 26; g++) {
             for (int h = 18; h <= 20; h++) {
                 nodo[g][h].setEstado(true);
             }
