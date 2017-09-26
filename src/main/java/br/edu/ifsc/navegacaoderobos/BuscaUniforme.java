@@ -35,46 +35,73 @@ public class BuscaUniforme {
 
         }
         while (!filaNodo.isEmpty()) {
-            int i;
-            int j;
+            int linha;
+            int coluna;
             if (!filaNodo.isEmpty()) {
-                Nodo nodoA = filaNodo.remove();
-                String caminho = nodoA.getCaminho();
-                i = nodoA.getI() + 1;
-                j = nodoA.getJ();
-                if (Verifica(nodo, i, j, caminho, filaNodo)) {
-                    return caminho + nodo[i][j].getCaminho();
+                Nodo nodoFila = filaNodo.remove();
+                String caminho = nodoFila.getCaminho();
+                linha = nodoFila.getI() + 1;
+                coluna = nodoFila.getJ();
+                /*[ ][ ][ ]
+                  [ ][x][ ]
+                  [ ][x][ ]*/
+                if (Verifica(nodo, linha, coluna, caminho, filaNodo)) {
+                    return caminho + nodo[linha][coluna].getCaminho();
                 }
-                j++;
-                i--;
-                if (Verifica(nodo, i, j, caminho, filaNodo)) {
-                    return caminho + nodo[i][j].getCaminho();
+                coluna++;
+                linha--;
+                   /*[ ][ ][ ]
+                     [ ][x][x]
+                     [ ][ ][ ]*/
+                if (Verifica(nodo, linha, coluna, caminho, filaNodo)) {
+                    return caminho + nodo[linha][coluna].getCaminho();
                 }
-                i--;
-                j--;
-                if (Verifica(nodo, i, j, caminho, filaNodo)) {
-                    return caminho + nodo[i][j].getCaminho();
+                linha--;
+                coluna--;
+                 /*[ ][x][ ]
+                   [ ][x][ ]
+                   [ ][ ][ ]*/
+                if (Verifica(nodo, linha, coluna, caminho, filaNodo)) {
+                    return caminho + nodo[linha][coluna].getCaminho();
                 }
-                i++;
-                j--;
-                if (Verifica(nodo, i, j, caminho, filaNodo)) {
-                    return caminho + nodo[i][j].getCaminho();
+                linha++;
+                coluna--;
+                 /*[ ][ ][ ]
+                   [x][x][ ]
+                   [ ][ ][ ]*/
+                if (Verifica(nodo, linha, coluna, caminho, filaNodo)) {
+                    return caminho + nodo[linha][coluna].getCaminho();
                 }
-                i++;
-                if (Verifica(nodo, i, j, caminho, filaNodo)) {
-                    return caminho + nodo[i][j].getCaminho();
+                   linha++;
+                 /*[ ][ ][ ]
+                   [ ][x][ ]
+                   [x][x][ ]*/
+                if (Verifica(nodo, linha, coluna, caminho, filaNodo)) {
+                    return caminho + nodo[linha][coluna].getCaminho();
                 }
-                j = j + 2;
-                if (Verifica(nodo, i, j, caminho, filaNodo)) {
-                    return caminho + nodo[i][j].getCaminho();
+                 
+                coluna = coluna + 2;
+                /*[ ][ ][ ]
+                   [ ][x][ ]
+                   [ ][ ][x]*/
+                if (Verifica(nodo, linha, coluna, caminho, filaNodo)) {
+                    return caminho + nodo[linha][coluna].getCaminho();
                 }
-                i = i - 2;
-                if (Verifica(nodo, i, j, caminho, filaNodo)) {
-                    return caminho + nodo[i][j].getCaminho();
+               
+                linha = linha - 2;
+                  /*[ ][ ][x]
+                    [ ][x][ ]
+                    [ ][ ][ ]*/
+                if (Verifica(nodo, linha, coluna, caminho, filaNodo)) {
+                    return caminho + nodo[linha][coluna].getCaminho();
                 }
-                j = j - 2;
-                if (Verifica(nodo, i, j, caminho, filaNodo)) {
-                    return caminho + nodo[i][j].getCaminho();
+               
+                coluna = coluna - 2;
+                  /*[x][ ][ ]
+                    [ ][x][ ]
+                    [ ][ ][ ]*/
+                if (Verifica(nodo, linha, coluna, caminho, filaNodo)) {
+                    return caminho + nodo[linha][coluna].getCaminho();
                 }
             }
 
