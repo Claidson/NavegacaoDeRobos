@@ -21,6 +21,8 @@ public class BuscaUniforme {
         Queue<Nodo> filaNodo = new LinkedList<Nodo>();
 
         for (int i = 1; i < 51; i++) {
+            
+            //pega o ponto inicial e a partir dele coloca  na fila 
             for (int j = 1; j < 51; j++) {
                 if (nodo[i][j].getChegada()) {
                     nodo[i][j].setVisitadoA(Boolean.TRUE);
@@ -30,6 +32,7 @@ public class BuscaUniforme {
                 if (nodo[i][j].getSaida()) {
                     nodo[i][j].setVisitadoB(Boolean.TRUE);
                     nodo[i][j].setCaminho(";" + i + ";" + j);
+                    System.out.println(" i e j" +i+ " "+ j);
                 }
             }
 
@@ -38,8 +41,11 @@ public class BuscaUniforme {
             int linha;
             int coluna;
             if (!filaNodo.isEmpty()) {
+                
+                //pega o ultimo e atribui linha e coluna
                 Nodo nodoFila = filaNodo.remove();
                 String caminho = nodoFila.getCaminho();
+                
                 linha = nodoFila.getI() + 1;
                 coluna = nodoFila.getJ();
                 /*[ ][ ][ ]
