@@ -8,6 +8,7 @@ package br.edu.ifsc.navegacaoderobos;
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -463,7 +464,12 @@ public class TelaInicial extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
+                    UIManager.LookAndFeelInfo[] looks = javax.swing.UIManager.getInstalledLookAndFeels();
+                    for (int i = 0; i < looks.length; i++) {
+                      // System.out.println("looks: "+looks[i]); 
+                    }
+                    
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
